@@ -14,6 +14,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;Ctrl + Alt::MsgBox LR
 ;RAlt -> >!
 
+
 >!a:: Send, {Left} 
     return
 >!i:: Send, {Right} 
@@ -32,6 +33,27 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     return
 ;>!Space:: Send, {Return} 
     return
+>!k:: Send, {End}{Return}
+    
+
+    
+; braces
+>!h:: Send, (
+    return
+>!t:: Send, [
+    return
+>!n:: Send, {{}
+    return
+    
+RShift::
+  SetCapsLockState, on
+  Input key, V L1 T1, {F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12} {Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{PrintScreen}{Pause}{AppsKey}
+  SetCapsLockState, off
+  return
+
+;<+e:: send, Bat
+    
+;return
     
 ;right shifts
 ;>+e::ε
@@ -154,3 +176,19 @@ return
 return
 <#|::⌉ ;ceil close
 return
+
+;contractions
+::tho::though
+::thru::through
+
+;Lshift & Rshift:: send {x}
+;CapsLock:: send {Return}
+
+q::qu
+
+
+#If GetKeyState("NumLock","T")
+    )::1
+    return
+    
+    
