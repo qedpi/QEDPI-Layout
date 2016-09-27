@@ -1,0 +1,7 @@
+26keys 10 nums + 16 symbols
+
+
++-*/ 4, 12
+[{(, )}] 6, 6
+
+3 perc uppercase

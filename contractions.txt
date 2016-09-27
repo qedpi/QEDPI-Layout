@@ -5062,7 +5062,7 @@ my mother might start again together in the right place
 4995 (0.03, 'ah')
 4996 (0.02, 'uh')
 4997 (0.02, 'no')
-4998 (0.02, 'ha')
+4998 (0.02, 'ha')   
 4999 (0.0, 'i')
 5000 (0.0, 'a')
 
