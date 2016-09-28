@@ -211,14 +211,14 @@ return
 <!k::Send, {)}
 <!x::Send, {_}
 
-<!h::Send, {=}
-<!t::Send, {*}
-<!n::Send, {-}
-<!c::Send, {/}
-<!r::Send, {+}
+;<!h::Send, {=}
+;<!t::Send, {*}
+;<!n::Send, {-}
+;<!c::Send, {/}
+;<!r::Send, {+}
 
 
-<!s::Send, {!}
+;<!s::Send, {!}
 
 ;--- double char equal combos
 :*?:ss,h::{Space}{>}{>}={Space}   ;also Haskell monadic bind
@@ -302,7 +302,7 @@ return
 :*?:,o::{%}
 :*?:,;::{$}
 :*?:,y::{~}
-
+    
 
 ::abcd:: Send, {;}{Return}
     Return    
