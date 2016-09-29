@@ -3,10 +3,10 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-
+ß::LCtrl
 
 ;RShift::CapsLock
-;CapsLock::NumLock
+;CapsLock::NumLock  
 
 ; ctrl alt: ^>!, ^!, RAlt for right alt
 ; RAlt::MsgBox You pressed AltGr+m.
@@ -32,20 +32,26 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     return
 >!p:: Send, ^{Right} 
     return
-;>!Space:: Send, {Return} 
-    return
 >!k:: Send, {End}{Return}
-   
+   return
+>!j:: Send, {BackSpace}
 
-    
-; braces
->!h:: Send, (
-    return
->!t:: Send, [
-    return
->!n:: Send, {{}
-    return
-    
+
+>!h:: Send, ^g                      ;copy
+>!n:: Send, ^w                      ;cut
+>!t:: Send, ^'                      ;paste
+>!s:: Send, ^v                      ;undo
+>!c:: Send, ^{Left}+^{Right}        ;selects current word
+>!r:: Send, {Click 3}               ;selects current line
+;>!r:: Send, {HOME}+{END}^c{END} 
+
+^!s::
+  str := clipboard, out := ""
+  loop % strlen(str)
+    out .= SubStr(str, A_Index, 1) Chr(0x336)
+  SendInput %out%
+return
+  
 RShift::
   SetCapsLockState, on
   Input key, V L1 T1, {F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12} {Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{PrintScreen}{Pause}{AppsKey}
@@ -185,7 +191,7 @@ return
 ;Lshift & Rshift:: send {x}
 ;CapsLock:: send {Return}
 
-ß::NumLock
+;ß::NumLock
 ;ß::LAlt
 ;LAlt::CapsLock
 ;CapsLock::NumLock
@@ -220,106 +226,63 @@ return
 
 ;<!s::Send, {!}
 
-;--- double char equal combos
-:*?:ss,h::{Space}{>}{>}={Space}   ;also Haskell monadic bind
-:*?:sn,h::{Space}{>}{>}={Space}    ; alt
-:*?:dd,h::{Space}{<}{<}={Space}   
-:*?:hd,h::{Space}{<}{<}={Space}    ; alt
-:*?:tt,h::{Space}{*}{*}={Space}   ;Py
-:*?:nt,h::{Space}{*}{*}={Space}    ; alt
+;--- single chars
+:*:,c::{Space}{+}{Space}     
+:*:,n::{Space}{-}{Space}
+:*:,t::{Space}{*}{Space}
+:*:,r::{Space}{/}{Space}
+:*:,b::{Space}{!}
+:*:,s::{Space}{>}{Space}
+:*:,d::{Space}{<}{Space}
+:*:,h::{Space}{=}{Space} 
+:*:,m::{Space}{#}{Space} 
+:*:,w::{Space}{&}{Space} 
+:*:,v::{Space}{|}{Space}
+:*:,l::{Space}{^}{Space} 
+    
+#If, GetKeyState("Space", "P") ;Your CapsLock hotkeys go below
 
 ;equals combinations
-:*?:hh,h::{Space}{=}{=}={Space}   ;JS
-:*?:ht,h::{Space}{=}{=}={Space}   ; alt
-:*?:bh,h::{Space}{!}{=}={Space}   ;JS
-:*?:h,b::{Space}{!}{=}={Space}    ; alt
-:*?:c,h::{Space}{+}={Space}
-:*?:n,h::{Space}{-}={Space}
-:*?:t,h::{Space}{*}={Space}
-:*?:r,h::{Space}{/}={Space}
-:*?:b,h::{Space}{!}={Space}
-:*?:s,h::{Space}{>}={Space}
-:*?:d,h::{Space}{<}={Space}
-:*?:h,h::{Space}{=}={Space}
-:*?:h,t::{Space}{=}={Space}       ; alt
+:*:st::{=}{=}={Space}    ; JS
+:*:hb::{!}{=}={Space}    ; JS
+:*:hh::{=}={Space}    
+:*:nt::{=}={Space}       ; alt   --------
+:*:ch::{+}={Space}
+:*:nh::{-}={Space}
+:*:th::{*}={Space}
+:*:rh::{/}={Space} 
+:*:bh::{!}={Space}
+:*:sh::{>}={Space}
+:*:dh::{<}={Space}
+
 
 ;--- doubled chars
-:*?:s,s::{Space}{>}{>}{Space}       ;bit shift right
-:*?:s,n::{Space}{>}{>}{Space}       ; alt
-:*?:d,d::{Space}{<}{<}{Space}       ;bit shift left
-:*?:h,d::{Space}{<}{<}{Space}       ; alt
-:*?:t,t::{Space}{*}{*}{Space}       ;Py, ES2016
-:*?:n,t::{Space}{*}{*}{Space}       ; alt
-:*?:c,c::{Space}{+}{+}              ;C-type increment
-:*?:h,c::{Space}{+}{+}              ; alt
-:*?:n,n::{Space}{-}{-}              ;C-type decrement
-:*?:h,n::{Space}{-}{-}              ; alt
-:*?:r,r::{Space}{/}{/}{Space}       ;C-type comment, Py int divison
-:*?:r,c::{Space}{/}{/}{Space}       ; alt
+:*:ss::{>}{>}{Space}       ;bit shift right
+:*:dd::{<}{<}{Space}       ;bit shift left
+:*:tt::{*}{*}{Space}       ;Py, ES2016
+:*:cc::{+}{+}              ;C-type increment
+:*:nn::{-}{-}              ;C-type decrement
+:*:rr::{/}{/}{Space}       ;C-type comment, Py int divison
+:*:bb::{!}{!}{Space}       ;Haskell index access
 
 ;--- double char combos
-:*?:r,t::{/}{*}{Space}              ;C-type
-:*?:t,r::{Space}{*}{/}              ; alt
-:*?:p,s::{Space}{<}{>}{Space}       ;Haskell
-:*?:d,n::{Space}{<}{-}{Space}       ;Haskell
-:*?:n,s::{Space}{-}{>}{Space}       ;Haskell
-:*?:r,s::{Space}{/}{>}              ;HTML
-:*?:h,s::{Space}{=}{>}{Space}       ;JS
+:*:rt::{/}{*}{Space}       ;C-type comment
+:*:tr::{*}{/}              ;
+:*:ds::{<}{>}{Space}       ;Haskell
+:*:dn::{<}{-}{Space}       ;Haskell
+:*:ns::{-}{>}{Space}       ;Haskell
+:*:rs::{/}{>}              ;HTML
+:*:hs::{=}{>}{Space}       ;JS
+
 
 ;--- triple char combos
-:*?:dt,s::{Space}{<}{*}{>}{Space}   ;Haskell
-
-;--- single chars
-:*?:,c::{Space}{+}{Space}
-:*?:,n::{Space}{-}{Space}
-:*?:,t::{Space}{*}{Space}
-:*?:,r::{Space}{/}{Space}
-:*?:,b::{Space}{!}{Space}
-:*?:,s::{Space}{>}{Space}
-:*?:,d::{Space}{<}{Space}
-:*?:,h::{Space}{=}{Space} 
-:*?:,m::{Space}{#}{Space} 
-:*?:,m::{Space}{&}{Space} 
-:*?:,m::{Space}{|}{Space} 
-:*?:,m::{Space}{^}{Space} 
-
-
-;--- candidates
-; :*?:;::{;}{Return}
-
-
-;left hand combos
-:*?:,u::{)}        ;* allows alpha suffix
-:*?:,k::{]}        ;? allows alpha prefix
-:*?:,x::{}}
-:*?:,i::{(}         ;Ides usually autocomplete brackets
-:*?:,p::{[}         
-:*?:,e::{{}
-:*?:o,.::{_}{_}     ;Py, 'dunder'
-:*?:,.::{_}
-:*?:,g::{\}
-:*?:,f::{@}
-:*?:,o::{%}
-:*?:,;::{$}
-:*?:,y::{~}
+:*:dts::{<}{*}{>}{Space}   ;Haskell
+    
+    
+    
+    
+    
     
 
-::abcd:: Send, {;}{Return}
-    Return    
-
-  
-Appskey:: Send, {Right}
-    Return
-Appskey & k::Send, Yay
-    Return
     
-CapsLock::
-	KeyWait, CapsLock
-	If (A_PriorKey="CapsLock")
-		SetCapsLockState, % GetKeyState("CapsLock","T") ? "Off" : "On"
-Return
-#If, GetKeyState("CapsLock", "P") ;Your CapsLock hotkeys go below
-
-n:: Send, {;}{Return}
-t:: Send, {Return}
-h:: Send, {BackSpace}
+ 
