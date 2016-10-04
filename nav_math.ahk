@@ -192,6 +192,9 @@ return
 :*?:,w::{Space}{&}{Space} 
 :*?:,v::{Space}{|}{Space}
 :*?:,l::{Space}{^}{Space} 
+:*?:,g::{Space}{\}{Space} 
+:*?:,f::{Space}{@}{Space} 
+
 
 ;--- left hand 
 :*?:,u::{)}        ;* allows alpha suffix
