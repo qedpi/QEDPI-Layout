@@ -1,22 +1,12 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿; ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ß::LCtrl
+;LShift::NumLock
 
-;RShift::CapsLock
-;CapsLock::NumLock  
-
-; ctrl alt: ^>!, ^!, RAlt for right alt
-; RAlt::MsgBox You pressed AltGr+m.
-
-;RAlt::MsgBox Right
-;Ctrl + Alt::MsgBox LR
-;RAlt -> >!
-
-
->!a:: Send, {Left} 
+>!a:: Send, {Left}
     return
 >!i:: Send, {Right} 
     return
@@ -188,57 +178,42 @@ return
 ::tho::though
 ::thru::through
 
-;Lshift & Rshift:: send {x}
-;CapsLock:: send {Return}
-
-;ß::NumLock
-;ß::LAlt
-;LAlt::CapsLock
-;CapsLock::NumLock
-
-;#If GetKeyState("NumLock","T")
-;    )::1
-;    return
- 
-;CapsLock::
-;	KeyWait, CapsLock
-;	If (A_PriorKey="CapsLock")
-;		SetCapsLockState, % GetKeyState("CapsLock","T") ? "Off" : "On"
-;Return
-;#If, GetKeyState("CapsLock", "P") ;Your CapsLock hotkeys go below
-
-;left alt key modifiers
-
-<!a::Send, {{}
-<!q::Send, {}}
-<!e::Send, {[}
-<!j::Send, {]}
-<!i::Send, {(}
-<!k::Send, {)}
-<!x::Send, {_}
-
-;<!h::Send, {=}
-;<!t::Send, {*}
-;<!n::Send, {-}
-;<!c::Send, {/}
-;<!r::Send, {+}
-
-
-;<!s::Send, {!}
 
 ;--- single chars
-:*:,c::{Space}{+}{Space}     
-:*:,n::{Space}{-}{Space}
-:*:,t::{Space}{*}{Space}
-:*:,r::{Space}{/}{Space}
-:*:,b::{Space}{!}
-:*:,s::{Space}{>}{Space}
-:*:,d::{Space}{<}{Space}
-:*:,h::{Space}{=}{Space} 
-:*:,m::{Space}{#}{Space} 
-:*:,w::{Space}{&}{Space} 
-:*:,v::{Space}{|}{Space}
-:*:,l::{Space}{^}{Space} 
+:*?:,c::{Space}{+}{Space}     
+:*?:,n::{Space}{-}{Space}
+:*?:,t::{Space}{*}{Space}
+:*?:,r::{Space}{/}{Space}
+:*?:,b::{Space}{!}
+:*?:,s::{Space}{>}{Space}
+:*?:,d::{Space}{<}{Space}
+:*?:,h::{Space}{=}{Space} 
+:*?:,m::{Space}{#}{Space} 
+:*?:,w::{Space}{&}{Space} 
+:*?:,v::{Space}{|}{Space}
+:*?:,l::{Space}{^}{Space} 
+
+;--- left hand
+:*?:,p::{[} 
+:*?:,e::{{}
+:*?:,i::{(}
+:*?:,.::{_} 
+:*?:,;::{$}
+:*?:,o::{%}
+
+;--- left alt combos
+<!r::Send, enumerate(
+    return
+<!s::Send, zip(
+    return
+<!n::Send, len( 
+    return
+<!l::Send, lambda :{Left}
+    return
+<!t::Send, print(
+    return
+<!h::Send, forin{Left}{Left}{Space}
+    return
     
 #If, GetKeyState("Space", "P") ;Your CapsLock hotkeys go below
 
@@ -279,10 +254,37 @@ return
 :*:dts::{<}{*}{>}{Space}   ;Haskell
     
     
-    
-    
-    
-    
 
-    
- 
+:*?:,u::{)}        ;* allows alpha suffix
+:*?:,k::{]}        ;? allows alpha prefix
+:*?:,x::{}}
+:*?:,i::{(}         ;Ides usually autocomplete brackets
+:*?:,p::{[}         
+:*?:,e::{{}
+;:*?:o,.::{_}{_}     ;Py, 'dunder'
+;:*?:,.::{_}
+:*?:,g::{\}
+:*?:,f::{@}
+:*?:,o::{%}
+:*?:,y::{~}
+:*?:,;::{$}    
+;left hand combos
+
+
+CapsLock::
+	KeyWait, CapsLock
+	If (A_PriorKey="CapsLock")
+		SetCapsLockState, % GetKeyState("CapsLock","T") ? "Off" : "On"
+Return
+#If, GetKeyState("CapsLock", "P") ;Your CapsLock hotkeys go below
+h::0
+i::1
+t::2
+e::3
+n::4
+a::5
+s::6
+o::7
+d::8
+u::9
+
