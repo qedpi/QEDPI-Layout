@@ -191,9 +191,9 @@ return
 :*?:,m::{Space}{#}{Space} 
 :*?:,w::{Space}{&}{Space} 
 :*?:,v::{Space}{|}{Space}
-:*?:,l::{Space}{^}{Space} 
-:*?:,g::{Space}{\}{Space} 
-:*?:,f::{Space}{@}{Space} 
+:*?:,l::{^}
+:*?:,g::{\} 
+:*?:,f::{@}
 
 
 ;--- left hand 
@@ -209,6 +209,7 @@ return
 :*?:,o::{%}
 :*?:,k::{~}
 :*?:,;::{$}    
+:*?:,a::````{Left}   
 :*?:,,::{_}{_}     ;Py, 'dunder'
 
 
