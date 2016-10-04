@@ -193,13 +193,21 @@ return
 :*?:,v::{Space}{|}{Space}
 :*?:,l::{Space}{^}{Space} 
 
-;--- left hand
-:*?:,p::{[} 
+;--- left hand 
+:*?:,u::{)}        ;* allows alpha suffix
+:*?:,y::{]}        ;? allows alpha prefix
+:*?:,x::{}}
+:*?:,i::{(}         ;Ides usually autocomplete brackets
+:*?:,p::{[}         
 :*?:,e::{{}
-:*?:,i::{(}
-:*?:,.::{_} 
-:*?:,;::{$}
+:*?:,.::{_}
+:*?:,g::{\}
+:*?:,f::{@}
 :*?:,o::{%}
+:*?:,k::{~}
+:*?:,;::{$}    
+:*?:,,::{_}{_}     ;Py, 'dunder'
+
 
 ;--- left alt combos
 <!r::Send, enumerate(
@@ -240,6 +248,7 @@ return
 :*:rr::{/}{/}{Space}       ;C-type comment, Py int divison
 :*:bb::{!}{!}{Space}       ;Haskell index access
 
+
 ;--- double char combos
 :*:rt::{/}{*}{Space}       ;C-type comment
 :*:tr::{*}{/}              ;
@@ -252,23 +261,7 @@ return
 
 ;--- triple char combos
 :*:dts::{<}{*}{>}{Space}   ;Haskell
-    
-    
-
-:*?:,u::{)}        ;* allows alpha suffix
-:*?:,k::{]}        ;? allows alpha prefix
-:*?:,x::{}}
-:*?:,i::{(}         ;Ides usually autocomplete brackets
-:*?:,p::{[}         
-:*?:,e::{{}
-;:*?:o,.::{_}{_}     ;Py, 'dunder'
-;:*?:,.::{_}
-:*?:,g::{\}
-:*?:,f::{@}
-:*?:,o::{%}
-:*?:,y::{~}
-:*?:,;::{$}    
-;left hand combos
+   
 
 
 CapsLock::
